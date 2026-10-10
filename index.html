@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UMA — Biblioteca Creativa</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">U</div>
+
+            <div>
+                <h2>UMA</h2>
+                <span>Biblioteca creativa</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <button class="nav-btn active" data-view="inicio">
+                🏠
+                <span>Inicio</span>
+            </button>
+
+            <button class="nav-btn" data-view="libros">
+                📚
+                <span>Mis libros</span>
+            </button>
+
+            <button class="nav-btn" data-view="crear">
+                ✦
+                <span>Crear libro</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <span>✦</span>
+            <div>
+                <strong>Tu historia merece un lugar.</strong>
+                <small>Escribe · Edita · Publica</small>
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- ================= CONTENIDO ================= -->
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+                <span class="eyebrow">TU ESPACIO DE ESCRITURA</span>
+                <h1 id="pageTitle">Inicio</h1>
+            </div>
+
+            <button class="primary-btn" id="nuevoLibro">
+                ＋ Nuevo libro
+            </button>
+
+        </header>
+
+
+        <!-- ================= INICIO ================= -->
+
+        <section id="inicioView" class="view active">
+
+            <div class="hero">
+
+                <div class="hero-content">
+
+                    <span class="tag">
+                        ✦ Biblioteca personal
+                    </span>
+
+                    <h2>
+                        Convierte tus ideas
+                        <br>
+                        en un libro hermoso.
+                    </h2>
+
+                    <p>
+                        Organiza tu portada, sinopsis y capítulos
+                        en un espacio pensado para escribir,
+                        editar y crear historias increíbles.
+                    </p>
+
+                    <button class="primary-btn" id="comenzarBtn">
+                        Comenzar a escribir →
+                    </button>
+
+                </div>
+
+
+                <div class="hero-book">
+
+                    <div class="fake-book">
+
+                        <span>UMA</span>
+
+                        <h3>
+                            Tu próxima
+                            <br>
+                            historia
+                        </h3>
+
+                        <small>
+                            Una página a la vez
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ESTADÍSTICAS -->
+
+            <div class="section-title">
+
+                <div>
+                    <span class="eyebrow">RESUMEN</span>
+                    <h3>Tu biblioteca</h3>
+                </div>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat-card">
+
+                    <span>Libros</span>
+
+                    <strong id="cantidadLibros">
+                        0
+                    </strong>
+
+                    <small>
+                        en tu biblioteca
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>Capítulos</span>
+
+                    <strong id="cantidadCapitulos">
+                        0
+                    </strong>
+
+                    <small>
+                        capítulos escritos
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>Último trabajo</span>
+
+                    <strong id="ultimoLibro">
+                        —
+                    </strong>
+
+                    <small>
+                        actividad reciente
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= LIBROS ================= -->
+
+        <section id="librosView" class="view">
+
+            <div class="section-title">
+
+                <div>
+                    <span class="eyebrow">COLECCIÓN</span>
+                    <h3>Mis libros</h3>
+                </div>
+
+                <button class="outline-btn" id="crearDesdeLibros">
+                    ＋ Crear libro
+                </button>
+
+            </div>
+
+
+            <div id="librosGrid" class="books-grid"></div>
+
+
+            <div id="sinLibros" class="empty">
+
+                <div class="empty-icon">
+                    ✧
+                </div>
+
+                <h3>
+                    Aún no tienes libros
+                </h3>
+
+                <p>
+                    Crea tu primera historia y comienza
+                    a construir sus capítulos.
+                </p>
+
+                <button class="primary-btn" id="crearPrimerLibro">
+                    Crear mi primer libro
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= CREAR LIBRO ================= -->
+
+        <section id="crearView" class="view">
+
+            <div class="form-container">
+
+                <div class="section-title">
+
+                    <div>
+                        <span class="eyebrow">
+                            NUEVO PROYECTO
+                        </span>
+
+                        <h3>
+                            Crear libro
+                        </h3>
+                    </div>
+
+                    <button class="ghost-btn" id="cancelarLibro">
+                        Cancelar
+                    </button>
+
+                </div>
+
+
+                <form id="formLibro">
+
+                    <div class="book-form">
+
+                        <!-- PORTADA -->
+
+                        <div>
+
+                            <label
+                                for="portada"
+                                class="cover-upload"
+                                id="previewPortada"
+                            >
+
+                                <span>
+                                    ＋
+                                </span>
+
+                                <strong>
+                                    Subir portada
+                                </strong>
+
+                                <small>
+                                    JPG, PNG o WEBP
+                                </small>
+
+                            </label>
+
+                            <input
+                                type="file"
+                                id="portada"
+                                accept="image/*"
+                                hidden
+                            >
+
+                        </div>
+
+
+                        <!-- CAMPOS -->
+
+                        <div class="fields">
+
+                            <label>
+
+                                Título del libro
+
+                                <input
+                                    type="text"
+                                    id="titulo"
+                                    placeholder="Ej. El precio de crecer"
+                                    required
+                                >
+
+                            </label>
+
+
+                            <label>
+
+                                Autor o autora
+
+                                <input
+                                    type="text"
+                                    id="autor"
+                                    placeholder="Tu nombre"
+                                    required
+                                >
+
+                            </label>
+
+
+                            <label>
+
+                                Descripción
+
+                                <textarea
+                                    id="descripcion"
+                                    rows="4"
+                                    placeholder="Describe brevemente tu libro..."
+                                ></textarea>
+
+                            </label>
+
+
+                            <label>
+
+                                Sinopsis
+
+                                <textarea
+                                    id="sinopsis"
+                                    rows="7"
+                                    placeholder="Escribe la sinopsis de tu historia..."
+                                ></textarea>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-buttons">
+
+                        <button
+                            type="button"
+                            class="outline-btn"
+                            id="cancelarLibro2"
+                        >
+                            Cancelar
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="primary-btn"
+                        >
+                            Guardar libro →
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= EDITOR ================= -->
+
+        <section id="editorView" class="view">
+
+            <div class="editor-top">
+
+                <button
+                    class="back-btn"
+                    id="volverLibros"
+                >
+                    ← Mis libros
+                </button>
+
+
+                <div class="book-info">
+
+                    <div
+                        class="mini-cover"
+                        id="miniCover"
+                    ></div>
+
+                    <div>
+
+                        <span class="eyebrow">
+                            LIBRO
+                        </span>
+
+                        <h3 id="nombreLibroEditor">
+                            Libro
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    id="nuevoCapitulo"
+                >
+                    ＋ Nuevo capítulo
+                </button>
+
+            </div>
+
+
+
+            <!-- EDITOR -->
+
+            <div class="chapter-editor">
+
+                <div class="editor-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            ESCRITURA
+                        </span>
+
+                        <h3 id="modoCapitulo">
+                            Crear capítulo
+                        </h3>
+
+                    </div>
+
+
+                    <div class="editor-actions">
+
+                        <button
+                            class="outline-btn"
+                            id="apa"
+                        >
+                            Normas APA
+                        </button>
+
+                        <button
+                            class="primary-btn"
+                            id="guardarCapitulo"
+                        >
+                            Guardar capítulo
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TÍTULO -->
+
+                <label class="chapter-title">
+
+                    Título del capítulo
+
+                    <input
+                        type="text"
+                        id="tituloCapitulo"
+                        placeholder="Ej. Capítulo 1 — El comienzo"
+                    >
+
+                </label>
+
+
+                <!-- WORD -->
+
+                <div class="word-editor">
+
+                    <div class="toolbar">
+
+                        <select id="fuente">
+
+                            <option value="Times New Roman">
+                                Times New Roman
+                            </option>
+
+                            <option value="Arial">
+                                Arial
+                            </option>
+
+                            <option value="Georgia">
+                                Georgia
+                            </option>
+
+                            <option value="Calibri">
+                                Calibri
+                            </option>
+
+                        </select>
+
+
+                        <select id="tamano">
+
+                            <option value="12">
+                                12
+                            </option>
+
+                            <option value="14">
+                                14
+                            </option>
+
+                            <option value="16">
+                                16
+                            </option>
+
+                            <option value="18">
+                                18
+                            </option>
+
+                        </select>
+
+
+                        <button data-command="bold">
+                            <b>B</b>
+                        </button>
+
+                        <button data-command="italic">
+                            <i>I</i>
+                        </button>
+
+                        <button data-command="underline">
+                            <u>U</u>
+                        </button>
+
+                        <span></span>
+
+                        <button data-command="justifyLeft">
+                            ☰
+                        </button>
+
+                        <button data-command="justifyCenter">
+                            ≡
+                        </button>
+
+                        <button data-command="justifyRight">
+                            ☷
+                        </button>
+
+                        <button data-command="insertUnorderedList">
+                            • Lista
+                        </button>
+
+                        <button data-command="insertOrderedList">
+                            1. Lista
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="textoCapitulo"
+                        class="writing-area"
+                        contenteditable="true"
+                        data-placeholder="Comienza a escribir tu capítulo aquí..."
+                    ></div>
+
+
+                    <div class="editor-status">
+
+                        <span>
+                            Formato académico
+                        </span>
+
+                        <span id="contadorPalabras">
+                            0 palabras
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CAPÍTULOS -->
+
+            <div class="section-title">
+
+                <div>
+
+                    <span class="eyebrow">
+                        ESTRUCTURA
+                    </span>
+
+                    <h3>
+                        Capítulos del libro
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="capitulosGrid"
+                class="chapters-grid"
+            ></div>
+
+
+            <div
+                id="sinCapitulos"
+                class="empty-chapters"
+            >
+                Todavía no hay capítulos.
+                Crea el primero para comenzar.
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div id="toast" class="toast"></div>
+
+
+<!-- jsPDF -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
